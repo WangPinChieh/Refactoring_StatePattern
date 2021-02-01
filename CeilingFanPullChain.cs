@@ -2,22 +2,44 @@
 
 namespace Refactoring_StatePattern
 {
+    public interface IState
+    {
+        void Pull();
+    }
+
+    public class Off : IState
+    {
+        private readonly CeilingFanPullChain _ceilingFanPullChain;
+
+        public Off(CeilingFanPullChain ceilingFanPullChain)
+        {
+            _ceilingFanPullChain = ceilingFanPullChain;
+        }
+
+        public void Pull()
+        {
+            _ceilingFanPullChain.SetState(1);
+            Console.WriteLine("low speed");
+        }
+    }
+
     public class CeilingFanPullChain
     {
-        private int currentState;
+        private int _currentState;
+        private readonly IState _state;
 
         public CeilingFanPullChain()
         {
-            currentState = 0;
+            _currentState = 0;
+            _state = new Off(this);
         }
 
         public void pull()
         {
-            switch (currentState)
+            switch (_currentState)
             {
                 case 0:
-                    SetState(1);
-                    Console.WriteLine("low speed");
+                    _state.Pull();
                     break;
                 case 1:
                     SetState(2);
@@ -34,9 +56,9 @@ namespace Refactoring_StatePattern
             }
         }
 
-        private void SetState(int state)
+        public void SetState(int state)
         {
-            currentState = state;
+            _currentState = state;
         }
     }
 }
