@@ -11,7 +11,7 @@ namespace Refactoring_StatePattern
             {
                 Console.WriteLine("Press Enter");
                 Console.ReadLine();
-                ceilingFanPullChain.pull();
+                ceilingFanPullChain.Pull();
             }
         }
     }
