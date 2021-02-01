@@ -6,7 +6,13 @@ namespace Refactoring_StatePattern
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var ceilingFanPullChain = new CeilingFanPullChain();
+            while (true)
+            {
+                Console.WriteLine("Press Enter");
+                Console.ReadLine();
+                ceilingFanPullChain.pull();
+            }
         }
     }
 }
